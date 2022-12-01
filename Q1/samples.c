@@ -3,7 +3,7 @@
 #include <string.h>
 #include <time.h>
 //Random number generator with parameters
-int randomNumberBetween(int lower, int upper)
+int randomNumber(int upper)
 {
     int num = rand() % (upper + 1);
     return (num);
@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
     //Go through 'text' starting from the random number until random+maxfragsize
     for (int i = 0; i < numberfrags; i++)
     {
-        random = randomNumberBetween(0, limit);
+        random = randomNumber(limit);
         for (int j = random; j < random + maxfragsize; j++)
         {
             fseek( fd, j, SEEK_SET );

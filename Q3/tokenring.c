@@ -78,7 +78,6 @@ int main(int argc, char *argv[])
     sprintf(name, "pipe%dto%d", n, 1);
     mkfifo(name, 0666);
     int token = 0;
-    srand(time(0));
     for (int i = 2; i <= n; i++)
     {
         pid = fork();
@@ -88,7 +87,7 @@ int main(int argc, char *argv[])
             break;
         }
     }
-
+    srand(time(NULL) ^ getpid());
     char name1[13];
     char name2[13];
 
@@ -126,9 +125,9 @@ int main(int argc, char *argv[])
         int num = rand() % 100;
         if (num <= p)
         {
-            printf("[%d] lock on token (val = %d)\n", getpid(), token);
+            printf("[p%d] lock on token (val = %d)\n", proc, token);
             sleep(t);
-            printf("[%d] unlock on token\n", getpid());
+            printf("[p%d] unlock token\n\n", proc);
             fflush(stdout);
         }
 
